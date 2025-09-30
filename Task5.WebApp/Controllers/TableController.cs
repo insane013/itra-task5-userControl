@@ -1,9 +1,10 @@
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Task5.Services.Abstraction;
 
 namespace Task5.WebApp.Controllers;
 
+[Authorize]
 [Route("Table")]
 public class TableController : BaseController
 {
