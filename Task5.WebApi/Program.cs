@@ -1,7 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+<<<<<<< HEAD
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+=======
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -14,6 +17,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+<<<<<<< HEAD
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -39,3 +43,6 @@ record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+=======
+app.Run();
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df

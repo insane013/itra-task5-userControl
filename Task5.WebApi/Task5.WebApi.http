@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @Task5.WebApi_HostAddress = http://localhost:5190
+=======
+@Task5.WebApi_HostAddress = http://localhost:5064
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df
 
 GET {{Task5.WebApi_HostAddress}}/weatherforecast/
 Accept: application/json

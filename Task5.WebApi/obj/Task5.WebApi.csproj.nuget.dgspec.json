@@ -4,6 +4,7 @@
     "D:\\Development projects\\ITRA\\task5\\Task5.WebApi\\Task5.WebApi.csproj": {}
   },
   "projects": {
+<<<<<<< HEAD
     "D:\\Development projects\\ITRA\\task5\\Task5.Database\\Task5.Database.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -203,6 +204,8 @@
         }
       }
     },
+=======
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df
     "D:\\Development projects\\ITRA\\task5\\Task5.WebApi\\Task5.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -229,11 +232,15 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
+<<<<<<< HEAD
             "projectReferences": {
               "D:\\Development projects\\ITRA\\task5\\Task5.WebApi.Services\\Task5.WebApi.Services.csproj": {
                 "projectPath": "D:\\Development projects\\ITRA\\task5\\Task5.WebApi.Services\\Task5.WebApi.Services.csproj"
               }
             }
+=======
+            "projectReferences": {}
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df
           }
         },
         "warningProperties": {

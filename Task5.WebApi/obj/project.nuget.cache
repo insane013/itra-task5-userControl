@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "FErNJh5OVd4=",
+=======
+  "dgSpecHash": "NuNYQJYA5W4=",
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df
   "success": true,
   "projectFilePath": "D:\\Development projects\\ITRA\\task5\\Task5.WebApi\\Task5.WebApi.csproj",
   "expectedPackageFiles": [

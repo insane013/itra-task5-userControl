@@ -33,6 +33,7 @@
             "related": ".pdb;.xml"
           }
         }
+<<<<<<< HEAD
       },
       "Task5.Database/1.0.0": {
         "type": "project",
@@ -67,6 +68,8 @@
         "runtime": {
           "bin/placeholder/Task5.WebApi.Services.dll": {}
         }
+=======
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df
       }
     }
   },
@@ -101,6 +104,7 @@
         "microsoft.openapi.1.6.17.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+<<<<<<< HEAD
     },
     "Task5.Database/1.0.0": {
       "type": "project",
@@ -116,12 +120,18 @@
       "type": "project",
       "path": "../Task5.WebApi.Services/Task5.WebApi.Services.csproj",
       "msbuildProject": "../Task5.WebApi.Services/Task5.WebApi.Services.csproj"
+=======
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+<<<<<<< HEAD
       "Microsoft.AspNetCore.OpenApi >= 9.0.0",
       "Task5.WebApi.Services >= 1.0.0"
+=======
+      "Microsoft.AspNetCore.OpenApi >= 9.0.0"
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df
     ]
   },
   "packageFolders": {
@@ -154,11 +164,15 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+<<<<<<< HEAD
           "projectReferences": {
             "D:\\Development projects\\ITRA\\task5\\Task5.WebApi.Services\\Task5.WebApi.Services.csproj": {
               "projectPath": "D:\\Development projects\\ITRA\\task5\\Task5.WebApi.Services\\Task5.WebApi.Services.csproj"
             }
           }
+=======
+          "projectReferences": {}
+>>>>>>> ded6f3a57fcfe3eb134df88c9823a37b654dc9df
         }
       },
       "warningProperties": {
