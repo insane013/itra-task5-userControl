@@ -2,13 +2,13 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task5.WebApi", "Task5.WebApi\Task5.WebApi.csproj", "{1B925396-590E-C48E-E289-125CBC6F2430}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task5.WebApp", "Task5.WebApp\Task5.WebApp.csproj", "{1B925396-590E-C48E-E289-125CBC6F2430}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task5.Database", "Task5.Database\Task5.Database.csproj", "{B9786328-82C3-47F8-BF00-D65947826808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task5.WebApi.Services", "Task5.WebApi.Services\Task5.WebApi.Services.csproj", "{14B94345-7D19-44B4-9AE1-E18C70B0C2C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task5.Services", "Task5.Services\Task5.Services.csproj", "{14B94345-7D19-44B4-9AE1-E18C70B0C2C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task5.WebApi.Models", "Task5.WebApi.Models\Task5.WebApi.Models.csproj", "{EF8C598C-D8EA-4FEB-8A6B-45479D9A9461}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task5.Models", "Task5.Models\Task5.Models.csproj", "{EF8C598C-D8EA-4FEB-8A6B-45479D9A9461}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

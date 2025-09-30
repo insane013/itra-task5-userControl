@@ -1,0 +1,12 @@
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\bin\Debug\net9.0\Task5.WebApi.Models.deps.json
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\bin\Debug\net9.0\Task5.WebApi.Models.dll
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\bin\Debug\net9.0\Task5.WebApi.Models.pdb
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\obj\Debug\net9.0\Task5.WebApi.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\obj\Debug\net9.0\Task5.WebApi.Models.AssemblyInfoInputs.cache
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\obj\Debug\net9.0\Task5.WebApi.Models.AssemblyInfo.cs
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\obj\Debug\net9.0\Task5.WebApi.Models.csproj.CoreCompileInputs.cache
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\obj\Debug\net9.0\Task5.WebApi.Models.sourcelink.json
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\obj\Debug\net9.0\Task5.WebApi.Models.dll
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\obj\Debug\net9.0\refint\Task5.WebApi.Models.dll
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\obj\Debug\net9.0\Task5.WebApi.Models.pdb
+D:\Development projects\ITRA\task5\Task5.WebApi.Models\obj\Debug\net9.0\ref\Task5.WebApi.Models.dll

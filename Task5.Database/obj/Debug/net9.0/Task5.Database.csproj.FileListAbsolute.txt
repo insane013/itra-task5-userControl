@@ -1,0 +1,15 @@
+D:\Development projects\ITRA\task5\Task5.Database\bin\Debug\net9.0\Task5.Database.deps.json
+D:\Development projects\ITRA\task5\Task5.Database\bin\Debug\net9.0\Task5.Database.runtimeconfig.json
+D:\Development projects\ITRA\task5\Task5.Database\bin\Debug\net9.0\Task5.Database.dll
+D:\Development projects\ITRA\task5\Task5.Database\bin\Debug\net9.0\Task5.Database.pdb
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\Task5.Database.csproj.AssemblyReference.cache
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\Task5.Database.GeneratedMSBuildEditorConfig.editorconfig
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\Task5.Database.AssemblyInfoInputs.cache
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\Task5.Database.AssemblyInfo.cs
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\Task5.Database.csproj.CoreCompileInputs.cache
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\Task5.Database.sourcelink.json
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\Task5.Database.dll
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\refint\Task5.Database.dll
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\Task5.Database.pdb
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\Task5.Database.genruntimeconfig.cache
+D:\Development projects\ITRA\task5\Task5.Database\obj\Debug\net9.0\ref\Task5.Database.dll
