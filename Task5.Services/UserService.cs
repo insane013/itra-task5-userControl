@@ -5,7 +5,7 @@ using Task5.Services.Abstraction;
 
 namespace Task5.Services;
 
-public class UserService : BaseService, IUserSerivice
+public class UserService : BaseService, IUserService
 {
     private readonly IUserRepository repository;
     private readonly IMapper mapper;

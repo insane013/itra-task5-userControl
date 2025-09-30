@@ -7,6 +7,8 @@ using Task5.WebApp.Controllers;
 using AutoMapper;
 using Task5.WebApi.Services.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Task5.Services.Abstraction;
+using Task5.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,7 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>()
                 .AddDefaultTokenProviders();
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(UserMapper));
 

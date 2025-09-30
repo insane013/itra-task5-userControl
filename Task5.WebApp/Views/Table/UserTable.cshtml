@@ -1,0 +1,35 @@
+@using Microsoft.AspNetCore.Identity.UI.Services
+@using Task5.Models.User
+@model IEnumerable<User>
+
+@{
+    List<User>? users = Model.ToList();
+}
+
+@if(users.Count > 0) {
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">
+                        <input class="form-check-input" type="checkbox" id="checkAll" />
+                    </th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Last seen</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in users)
+                {
+                    @await Html.PartialAsync("_User", user)
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div>NO USERS HERE</div>
+}

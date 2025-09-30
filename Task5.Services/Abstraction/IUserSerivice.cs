@@ -2,7 +2,7 @@ using Task5.Models.User;
 
 namespace Task5.Services.Abstraction;
 
-public interface IUserSerivice
+public interface IUserService
 {
     public Task<IEnumerable<User>> GetUserList();
 
