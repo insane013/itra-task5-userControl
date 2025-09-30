@@ -6,6 +6,7 @@ using Task5.Database.Repositories;
 using Task5.WebApp.Controllers;
 using AutoMapper;
 using Task5.WebApi.Services.Mappers;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(UserMapper));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
