@@ -25,8 +25,8 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>()
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Login";
-    options.AccessDeniedPath = "/AccessDenied";
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
 });     
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();

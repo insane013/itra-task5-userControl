@@ -18,6 +18,8 @@ public class AccountController : Controller
         _logger = logger;
     }
 
+    [Route("Login")]
+    [HttpGet]
     public IActionResult Login()
     {
         return View();
