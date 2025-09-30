@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "NuNYQJYA5W4=",
+  "success": true,
+  "projectFilePath": "D:\\Development projects\\ITRA\\task5\\Task5.WebApi\\Task5.WebApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tctyp\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.0\\microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
+    "C:\\Users\\tctyp\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
