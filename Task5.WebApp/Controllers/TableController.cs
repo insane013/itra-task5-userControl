@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Task5.Services.Abstraction;
+using Task5.Services.Users;
 
 namespace Task5.WebApp.Controllers;
 
@@ -9,7 +9,7 @@ namespace Task5.WebApp.Controllers;
 public class TableController : BaseController
 {
     private readonly IUserService userService;
-    public TableController(IUserService userService) : base()
+    public TableController(IUserService userService, ILogger<TableController> logger) : base(logger)
     {
         this.userService = userService;
     }

@@ -12,6 +12,7 @@ out/
 
 # --- Visual Studio Code ---
 .vscode/
+.vs/
 .history/
 
 # --- User specific ---

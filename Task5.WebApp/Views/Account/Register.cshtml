@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm rounded-4">
+            <div class="card-body p-4">
+                <h2 class="text-center mb-4 fw-bold">Sign Up</h2>
+
+                <form method="post" asp-action="Register">
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email: </label>
+                        <input type="email" class="form-control" id="email" name="Email" required placeholder="Enter an email" />
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password: </label>
+                        <input type="password" class="form-control" id="password" name="UserPassword" required placeholder="Enter the password" />
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm password:</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" required placeholder="Confirm the password." />
+                    </div>
+
+                    <!-- Full Name -->
+                    <div class="mb-3">
+                        <label for="fullname" class="form-label">Full name:</label>
+                        <input type="text" class="form-control" id="fullname" name="UserName" required placeholder="Enter your full name." />
+                    </div>
+
+                    <!-- Position -->
+                    <div class="mb-3">
+                        <label for="position" class="form-label">Position</label>
+                        <input type="text" class="form-control" id="position" name="Position" placeholder="Enter position." />
+                    </div>
+
+                    <!-- Register button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">Sign Up</button>
+                    </div>
+                </form>
+
+                <!-- Links -->
+                <div class="text-center mt-4">
+                    <p class="mb-1">
+                        Already have an account?
+                        <a href="/Account/Login" class="link-primary fw-semibold">Sign in</a>
+                    </p>
+                    <p>
+                        <a href="/Account/ForgotPassword" class="link-secondary">Forgot the password?</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 using Task5.Models.User;
 
-namespace Task5.Services.Abstraction;
+namespace Task5.Services.Users;
 
 public interface IUserService
 {
@@ -11,6 +11,4 @@ public interface IUserService
     public void BlockUsers(IEnumerable<string> users);
 
     public void DeleteUsers(IEnumerable<string> users);
-
-    public void VerifyUser(string email);
 }

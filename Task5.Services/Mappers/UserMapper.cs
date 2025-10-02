@@ -21,5 +21,11 @@ public class UserMapper: Profile
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(x => x.UserName))
             .ForMember(dest => dest.lastLoginTime, opt => opt.MapFrom(x => x.LastLoginTime))
             .ForMember(dest => dest.userStatus, opt => opt.MapFrom(x => x.Status));
+
+        _ = this.CreateMap<UserRegisterDto, UserEntity>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.Email, opt => opt.MapFrom(x => x.Email))
+            .ForMember(dest => dest.UserName, opt => opt.MapFrom(x => x.UserName))
+            .ForMember(dest => dest.userStatus, opt => opt.MapFrom(x => UserStatus.Unverified));
     }
 }

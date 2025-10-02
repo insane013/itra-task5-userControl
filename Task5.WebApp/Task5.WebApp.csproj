@@ -17,6 +17,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <PropertyGroup>
+    <UserSecretsId>your-guid-here</UserSecretsId>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Task5.Services\Task5.Services.csproj" />
   </ItemGroup>

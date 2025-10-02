@@ -1,19 +1,18 @@
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Task5.Database.Repositories;
 using Task5.Models.User;
-using Task5.Services.Abstraction;
 
-namespace Task5.Services;
+namespace Task5.Services.Users;
 
 public class UserService : BaseService, IUserService
 {
     private readonly IUserRepository repository;
-    private readonly IMapper mapper;
 
-    public UserService(IUserRepository repository, IMapper mapper) : base()
+    public UserService(IUserRepository repository, IMapper mapper, ILogger<UserService> logger) 
+    : base(mapper, logger)
     {
         this.repository = repository;
-        this.mapper = mapper;
     }
 
     public async Task<IEnumerable<User>> GetUserList()
@@ -38,11 +37,6 @@ public class UserService : BaseService, IUserService
     }
 
     public void DeleteUsers(IEnumerable<string> users)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void VerifyUser(string email)
     {
         throw new NotImplementedException();
     }
