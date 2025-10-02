@@ -16,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<UserDbContext>(_options =>
 {
-    _ = _options.UseSqlServer(builder.Configuration.GetConnectionString("UserDbConnection"));
+    _ = _options.UseSqlite(builder.Configuration.GetConnectionString("UserDbConnection"));
 });
 
 builder.Services.AddIdentity<UserEntity, IdentityRole>()
@@ -64,6 +64,12 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(UserMapper));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<UserDbContext>();
+    db.Database.Migrate(); // создаст файл mydb.db и применит миграции
+}
 
 app.UseStaticFiles();
 
