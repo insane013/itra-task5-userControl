@@ -36,7 +36,7 @@ public class AccountController : BaseController
     {
         if (await this.authService.LoginUser(model))
         {
-            return this.RedirectToAction("GetusersTable", controllerName: "Table");
+            return this.RedirectToAction("GetUsersTable", controllerName: "Table");
         }
 
         return this.View();
@@ -71,15 +71,21 @@ public class AccountController : BaseController
             return this.BadRequest(new { errors });
         }
 
-        await this.authService.RegisterUser(user, this.GetActionUrl("ConfirmEmail", "Account"));
+        var result = await this.authService.RegisterUser(user, this.GetActionUrl("ConfirmEmail", "Account"));
 
-        return View();
+        this.ViewData["Errors"] = result.Errors;
+
+        return result.Succeeded ? this.RedirectToAction("GetUsersTable", "Table") : this.View();
     }
 
     [Route("ConfirmEmail")]
-    public IActionResult ConfirmEmail([FromQuery] string userId, string token)
+    [HttpGet]
+    public async Task<IActionResult> ConfirmEmail([FromQuery] string userId, string token)
     {
-        return this.View();
+        var result = await this.authService.VerificationComplete(userId, token);
+        this._logger.LogInformation($"User: {userId}\nToken: {token}");
+
+        return result ? this.View("ConfirmationSuccess") : this.View("ConfirmationFail");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -90,7 +96,12 @@ public class AccountController : BaseController
 
     private string GetActionUrl(string action, string controller)
     {
-        var url = Url.Action(action: action, controller: controller)
+        var url = Url.Action(
+            action: action,
+            controller: controller,
+            values: null,
+            protocol: HttpContext.Request.Scheme,
+            host: HttpContext.Request.Host.ToString())
                 ?? $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{controller}/{action}";
 
         return url;

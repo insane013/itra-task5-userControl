@@ -1,3 +1,5 @@
+using System.Net;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
@@ -24,26 +26,25 @@ public class EmailVerificationService : BaseService, IVerificationService
 
         this._logger.LogInformation($"User verification started..");
 
-        var token = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-
-        var url = this.GenerateConfirmationLink(confirmActionUrl, user.Id, token);
-
-        this._logger.LogInformation($"Generated link: {confirmActionUrl}");
+        var url = await this.GenerateConfirmationLinkAsync(confirmActionUrl, user);
 
         await this.SendConfirmationEmail(user.Email, url);
     }
 
     private async Task SendConfirmationEmail(string email, string confirmationLink)
     {
-        string text = $"To confirm your email please follow this link: {confirmationLink}";
         string html = $@"To confirm your email please follow this link: <a href='{confirmationLink}'>{confirmationLink}</a>";
         string subject = "Task-5 app confirmation email";
 
         await this.emailSender.SendEmail(email, subject, html);
     }
 
-    private string GenerateConfirmationLink(string confirmActionUrl, string userId, string token)
+    private async Task<string> GenerateConfirmationLinkAsync(string confirmActionUrl, UserEntity user)
     {
-        return $"{confirmActionUrl}?userId={userId}&token={token}";
+        var token = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+
+        var encodedToken = WebUtility.UrlEncode(token);
+
+        return $"{confirmActionUrl}?userId={user.Id}&token={encodedToken}";
     }
 }

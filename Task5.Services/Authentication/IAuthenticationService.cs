@@ -6,5 +6,6 @@ public interface IAuthenticationSerivice
 {
     public Task<bool> LoginUser(UserLoginDto model);
     public Task LogOutUser();
-    public Task RegisterUser(UserRegisterDto user, string confirmActionUrl);
+    public Task<AuthenticationResult> RegisterUser(UserRegisterDto user, string confirmActionUrl);
+    public Task<bool> VerificationComplete(string userId, string token);
 }

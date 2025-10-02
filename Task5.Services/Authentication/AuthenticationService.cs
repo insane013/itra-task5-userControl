@@ -1,3 +1,4 @@
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -25,17 +26,14 @@ public class AuthenticationService : BaseService, IAuthenticationSerivice
         this.signInManager = signInManager;
     }
 
-    public async Task RegisterUser(UserRegisterDto model, string confirmActionUrl)
+    public async Task<AuthenticationResult> RegisterUser(UserRegisterDto model, string confirmActionUrl)
     {
         RegistrationLogs.UserRegistrationStart(this._logger, model.Email);
 
         UserEntity user = this.mapper.Map<UserEntity>(model);
         var res = await this.userManager.CreateAsync(user, model.UserPassword);
 
-        if (this.RegistrationResultProceed(res, model.Email))
-        {
-            await this.verificationService.Verify(user, confirmActionUrl);
-        }
+        return await this.RegistrationResultProceed(res, model.Email, confirmActionUrl);
     }
 
     public async Task<bool> LoginUser(UserLoginDto model)
@@ -46,11 +44,7 @@ public class AuthenticationService : BaseService, IAuthenticationSerivice
 
         var result = await this.signInManager.PasswordSignInAsync(user, model.UserPassword, model.RememberMe, lockoutOnFailure: false);
 
-        if (result.Succeeded)
-        {
-            user.LastLoginTime = DateTime.UtcNow;
-            await this.userManager.UpdateAsync(user);
-        }
+        if (result.Succeeded) await this.UpdateUserLoginTime(user);
 
         return result.Succeeded;
     }
@@ -60,21 +54,65 @@ public class AuthenticationService : BaseService, IAuthenticationSerivice
         await this.signInManager.SignOutAsync();
     }
 
-    private bool RegistrationResultProceed(IdentityResult result, string userEmail)
+    public async Task<bool> VerificationComplete(string userId, string token)
     {
-        if (result.Succeeded)
+        var user = await this.userManager.FindByIdAsync(userId);
+        var decodedToken = WebUtility.UrlDecode(token);
+
+        if (user is not null)
         {
-            RegistrationLogs.UserRegistrationSuccess(this._logger, userEmail);
-            return true;
+            var result = await this.userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded) await this.UpdateUserStatus(user, UserStatus.Active);
+
+            return result.Succeeded;
         }
 
+        return false;
+    }
+
+    private async Task UpdateUserStatus(UserEntity user, UserStatus status)
+    {
+        user.UserStatus = (int)status;
+        await this.userManager.UpdateAsync(user);
+    }
+
+    private async Task UpdateUserLoginTime(UserEntity user)
+    {
+        user.LastLoginTime = DateTime.UtcNow;
+        await this.userManager.UpdateAsync(user);
+    }
+
+    private async Task<AuthenticationResult> RegistrationResultProceed(IdentityResult result, string userEmail, string confirmActionUrl)
+    {
+        return result.Succeeded ? await this.RegistractionSuccess(userEmail, confirmActionUrl) : this.RegistractionFail(result, userEmail);
+    }
+    
+    private async Task<AuthenticationResult> RegistractionSuccess(string userEmail, string confirmActionUrl)
+    {
+        RegistrationLogs.UserRegistrationSuccess(this._logger, userEmail);
+
+        var createdUser = await this.userManager.FindByEmailAsync(userEmail);
+        await this.verificationService.Verify(createdUser!, confirmActionUrl);
+
+        await this.signInManager.SignInAsync(createdUser!, true);
+        await this.UpdateUserLoginTime(createdUser!);
+
+        return AuthenticationResult.Success;
+    }
+
+    private AuthenticationResult RegistractionFail(IdentityResult result, string userEmail)
+    {
         RegistrationLogs.UserRegistrationFailed(this._logger, userEmail);
+
+        AuthenticationResult response = new AuthenticationResult { Succeeded = false };
 
         foreach (var error in result.Errors)
         {
             CommonLogs.LogWarningMessage(this._logger, error.Description);
+
+            response.Errors.Append(error.Description);
         }
 
-        return false;
+        return response;
     }
 }
