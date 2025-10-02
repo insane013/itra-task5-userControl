@@ -54,8 +54,10 @@ builder.Services.AddTransient<IVerificationService, EmailVerificationService>();
 
 // Email API config
 var gmailAppPassword = builder.Configuration["Gmail:appPassword"];
+var gmailMailbox = builder.Configuration["Gmail:Email"];
+var gmailName = builder.Configuration["Gmail:Name"];
 
-builder.Services.AddSingleton<IEmailSender>(opt => new GmailSender(gmailAppPassword));
+builder.Services.AddSingleton<IEmailSender>(opt => new GmailSender(gmailMailbox, gmailName, gmailAppPassword));
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(UserMapper));
 

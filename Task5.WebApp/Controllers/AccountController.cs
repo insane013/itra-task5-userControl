@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Task5.Models.User;
 using Task5.Services.Authentication;
+using Task5.Services.Logging;
 
 namespace Task5.WebApp.Controllers;
 
@@ -29,6 +30,27 @@ public class AccountController : BaseController
         return this.View();
     }
 
+    [Route("Login")]
+    [HttpPost]
+    public async Task<IActionResult> Login(UserLoginDto model)
+    {
+        if (await this.authService.LoginUser(model))
+        {
+            return this.RedirectToAction("GetusersTable", controllerName: "Table");
+        }
+
+        return this.View();
+    }
+
+    [Route("Logout")]
+    [HttpPost]
+    public async Task<IActionResult> Logout()
+    {
+        await this.authService.LogOutUser();
+
+        return this.RedirectToAction("Login", controllerName: "Account");
+    }
+
     [Route("Register")]
     [HttpGet]
     public IActionResult Register()
@@ -48,8 +70,6 @@ public class AccountController : BaseController
                 .ToList();
             return this.BadRequest(new { errors });
         }
-
-        this._logger.LogInformation($"Register new user: {user.Email}");
 
         await this.authService.RegisterUser(user, this.GetActionUrl("ConfirmEmail", "Account"));
 

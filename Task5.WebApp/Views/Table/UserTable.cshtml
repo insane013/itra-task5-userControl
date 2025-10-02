@@ -6,10 +6,9 @@
     List<User>? users = Model.ToList();
 }
 
-@await Html.PartialAsync("_ToolBar");
-
-@if(users.Count > 0) {
-    <div class="table-responsive">
+<form id="usersForm" method="post">
+    @await Html.PartialAsync("_ToolBar")
+    <div class="table-responsive" style="padding-top: 80px;">
         <table class="table table-hover align-middle">
             <thead class="table-dark">
                 <tr>
@@ -20,6 +19,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Status</th>
                     <th scope="col">Last seen</th>
+                    <th scope="col">Registration Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,8 +30,4 @@
             </tbody>
         </table>
     </div>
-}
-else
-{
-    <div>NO USERS HERE</div>
-}
+</form>

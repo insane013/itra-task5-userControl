@@ -10,5 +10,7 @@ public class UserLoginDto
 
     [Required]
     [MinLength(1)] // extract defaults
-    public string UserPassword { get; init; }  = string.Empty;
+    public string UserPassword { get; init; } = string.Empty;
+
+    public bool RememberMe { get; init; } = false;
 }
