@@ -45,7 +45,7 @@ public class AccountController : BaseController
             }
 
             this.TempData["Error"] = "Incorrect email or password.";
-            return this.View();
+            return this.View(model);
         });
     }
 
@@ -73,13 +73,14 @@ public class AccountController : BaseController
         if (!this.ValidateModel(out IList<string> errors))
         {
             this.TempData["Errors"] = errors;
-            return this.View();
+            return this.View(user);
         }
 
         var result = await this.authService.RegisterUser(user, this.GetActionUrl("ConfirmEmail", "Account"));
 
         this.TempData["Errors"] = result.Errors;
-        this.TempData["Success"] = "User registered successfully.";
+        
+        if (result.Succeeded) this.TempData["Success"] = "User registered successfully.";
 
         return result.Succeeded ? this.RedirectToAction("GetUsersTable", "Table") : this.View();
     }

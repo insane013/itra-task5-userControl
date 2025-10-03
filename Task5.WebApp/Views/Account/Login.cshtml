@@ -1,3 +1,5 @@
+@using Task5.Models.User
+@model UserLoginDto
 @{
     var error = TempData["Error"];
 }
@@ -12,12 +14,14 @@
                     <div class="mb-3">
                         <label for="email" class="form-label">Email: </label>
                         <input type="email" class="form-control" id="email" name="Email" required placeholder="Enter an email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
                     <!-- Password -->
                     <div class="mb-3">
                         <label for="password" class="form-label">Password: </label>
                         <input type="password" class="form-control" id="password" name="UserPassword" required placeholder="Enter the password" />
+                        <span asp-validation-for="UserPassword" class="text-danger"></span>
                     </div>
 
                     <!-- Remember me -->

@@ -24,6 +24,13 @@
             <span class="badge bg-secondary">@Model.Status</span>
         }
     </td>
-    <td>@Model.LastLoginTime.ToString("dd.MM.yyyy HH:mm")</td>
+    <td>
+        @if (Model.LastLoginTime == DateTime.MinValue){
+            @:Never
+        }
+        else{
+            @Model.LastLoginTime.ToString("dd.MM.yyyy HH:mm")
+        }
+    </td>
     <td>@Model.RegisterTime.ToString("dd.MM.yyyy HH:mm")</td>
 </tr>

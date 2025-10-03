@@ -1,3 +1,5 @@
+@using Task5.Models.User
+@model UserRegisterDto
 @{
     var errors = this.TempData["Errors"] as IEnumerable<string>;
 }
@@ -11,31 +13,36 @@
                     <!-- Email -->
                     <div class="mb-3">
                         <label for="email" class="form-label">Email: </label>
-                        <input type="email" class="form-control" id="email" name="Email" required placeholder="Enter an email" />
+                        <input type="email" class="form-control" asp-for="Email" required placeholder="Enter an email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
                     <!-- Password -->
                     <div class="mb-3">
                         <label for="password" class="form-label">Password: </label>
-                        <input type="password" class="form-control" id="password" name="UserPassword" required placeholder="Enter the password" />
+                        <input type="password" class="form-control" asp-for="UserPassword" required placeholder="Enter the password" />
+                        <span asp-validation-for="UserPassword" class="text-danger"></span>
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">Confirm password:</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" required placeholder="Confirm the password." />
+                        <input type="password" class="form-control" asp-for="ConfirmPassword" required placeholder="Confirm the password." />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
 
                     <!-- Full Name -->
                     <div class="mb-3">
                         <label for="fullname" class="form-label">Full name:</label>
-                        <input type="text" class="form-control" id="fullname" name="UserName" required placeholder="Enter your full name." />
+                        <input type="text" class="form-control" asp-for="UserName" required placeholder="Enter your full name." />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
                     </div>
 
                     <!-- Position -->
                     <div class="mb-3">
                         <label for="position" class="form-label">Position</label>
-                        <input type="text" class="form-control" id="position" name="Position" placeholder="Enter position." />
+                        <input type="text" class="form-control" asp-for="UserPosition" placeholder="Enter position." />
+                        <span asp-validation-for="UserPosition" class="text-danger"></span>
                     </div>
 
                     <!-- Register button -->
