@@ -10,7 +10,7 @@ using Task5.Services.Verification;
 
 namespace Task5.Services.Authentication;
 
-public class AuthenticationService : BaseService, IAuthenticationSerivice
+public class AuthenticationService : BaseService, IAuthenticationService
 {
     private readonly UserManager<UserEntity> userManager;
     private readonly SignInManager<UserEntity> signInManager;

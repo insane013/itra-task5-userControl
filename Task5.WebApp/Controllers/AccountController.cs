@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Task5.Database.Entities;
 using Task5.Models.User;
 using Task5.Services.Authentication;
 using Task5.Services.Logging;
@@ -15,10 +17,10 @@ namespace Task5.WebApp.Controllers;
 public class AccountController : BaseController
 {
 
-    private readonly IAuthenticationSerivice authService;
+    private readonly IAuthenticationService authService;
 
-    public AccountController(IAuthenticationSerivice authService, ILogger<AccountController> logger)
-    : base(logger)
+    public AccountController(IAuthenticationService authService, SignInManager<UserEntity> signInManager, ILogger<AccountController> logger)
+    : base(logger, signInManager)
     {
         this.authService = authService;
     }
@@ -62,12 +64,8 @@ public class AccountController : BaseController
     [HttpPost]
     public async Task<IActionResult> Register([FromForm] UserRegisterDto user)
     {
-        if (!ModelState.IsValid)
+        if (!this.ValidateModel(out IList<string> errors))
         {
-            var errors = ModelState.Values
-                .SelectMany(v => v.Errors)
-                .Select(e => e.ErrorMessage)
-                .ToList();
             return this.BadRequest(new { errors });
         }
 
@@ -83,7 +81,7 @@ public class AccountController : BaseController
     public async Task<IActionResult> ConfirmEmail([FromQuery] string userId, string token)
     {
         var result = await this.authService.VerificationComplete(userId, token);
-        this._logger.LogInformation($"User: {userId}\nToken: {token}");
+        this.Logger.LogInformation($"User: {userId}\nToken: {token}");
 
         return result ? this.View("ConfirmationSuccess") : this.View("ConfirmationFail");
     }

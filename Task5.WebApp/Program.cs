@@ -26,18 +26,17 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>()
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
-    options.AccessDeniedPath = "/Account/AccessDenied";
+    options.AccessDeniedPath = "/Account/Login";
 });
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    // Настройки пароля
-    options.Password.RequireDigit = false;            // хотя бы одна цифра
-    options.Password.RequireLowercase = false;        // хотя бы одна строчная буква
-    options.Password.RequireUppercase = false;        // хотя бы одна заглавная буква
-    options.Password.RequireNonAlphanumeric = false; // хотя бы один спецсимвол
-    options.Password.RequiredLength = 1;             // минимальная длина
-    options.Password.RequiredUniqueChars = 1;        // кол-во уникальных символов
+    options.Password.RequireDigit = false;           
+    options.Password.RequireLowercase = false;        
+    options.Password.RequireUppercase = false;        
+    options.Password.RequireNonAlphanumeric = false; 
+    options.Password.RequiredLength = 1;             
+    options.Password.RequiredUniqueChars = 1;        
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     options.Lockout.MaxFailedAccessAttempts = 5;
     options.Lockout.AllowedForNewUsers = true;
@@ -49,7 +48,7 @@ builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IAuthenticationSerivice, AuthenticationService>();
+builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
 builder.Services.AddTransient<IVerificationService, EmailVerificationService>();
 
 // Email API config
@@ -68,7 +67,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<UserDbContext>();
-    db.Database.Migrate(); // создаст файл mydb.db и применит миграции
+    db.Database.Migrate();
 }
 
 app.UseStaticFiles();

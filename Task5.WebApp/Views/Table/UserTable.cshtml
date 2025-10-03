@@ -1,9 +1,8 @@
-@using Microsoft.AspNetCore.Identity.UI.Services
 @using Task5.Models.User
-@model IEnumerable<User>
+@model PaginatedResult<User>
 
 @{
-    List<User>? users = Model.ToList();
+    List<User>? users = Model.Items.ToList();
 }
 
 <form id="usersForm" method="post">
@@ -31,3 +30,5 @@
         </table>
     </div>
 </form>
+
+@await Html.PartialAsync("_Pagination", (Model.PageCount, Model.CurrentPage))
