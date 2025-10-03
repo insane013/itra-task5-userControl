@@ -6,10 +6,9 @@ namespace Task5.Services.Users;
 public interface IUserService
 {
     public Task<PaginatedResult<User>> GetUserList(string? currentUserId, UserFilter filter);
+    public Task BlockUsers(string? currentUserId, IEnumerable<string> emails);
+    public Task UnblockUsers(string? currentUserId, IEnumerable<string> emails);
 
-    public User GetUser(string email);
-
-    public void BlockUsers(IEnumerable<string> users);
-
-    public void DeleteUsers(IEnumerable<string> users);
+    public Task DeleteUsers(string? currentUserId, IEnumerable<string> emails);
+    public Task DeleteUnverifiedUsers(string? currentUserId);
 }

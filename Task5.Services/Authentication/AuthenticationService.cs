@@ -1,10 +1,13 @@
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Task5.Database.Entities;
 using Task5.Models.User;
+using Task5.Services.Exceptions;
 using Task5.Services.Logging;
 using Task5.Services.Verification;
 
@@ -57,11 +60,13 @@ public class AuthenticationService : BaseService, IAuthenticationService
     public async Task<bool> VerificationComplete(string userId, string token)
     {
         var user = await this.userManager.FindByIdAsync(userId);
-        var decodedToken = WebUtility.UrlDecode(token);
+        var decodedToken = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token));
+
+        this._logger.LogInformation($"UserId: {userId}\n\tToken: {decodedToken}\n\tEncoded: {token}");
 
         if (user is not null)
         {
-            var result = await this.userManager.ConfirmEmailAsync(user, token);
+            var result = await this.userManager.ConfirmEmailAsync(user, decodedToken);
             if (result.Succeeded) await this.UpdateUserStatus(user, UserStatus.Active);
 
             return result.Succeeded;
@@ -72,8 +77,11 @@ public class AuthenticationService : BaseService, IAuthenticationService
 
     private async Task UpdateUserStatus(UserEntity user, UserStatus status)
     {
-        user.UserStatus = (int)status;
-        await this.userManager.UpdateAsync(user);
+        if (user.UserStatus != (int)UserStatus.Blocked)
+        {
+            user.UserStatus = (int)status;
+            await this.userManager.UpdateAsync(user);
+        }
     }
 
     private async Task UpdateUserLoginTime(UserEntity user)

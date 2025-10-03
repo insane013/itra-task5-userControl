@@ -36,12 +36,17 @@ public class AccountController : BaseController
     [HttpPost]
     public async Task<IActionResult> Login(UserLoginDto model)
     {
-        if (await this.authService.LoginUser(model))
+        return await this.AccessDeniedProceed(async () =>
         {
-            return this.RedirectToAction("GetUsersTable", controllerName: "Table");
-        }
+            if (await this.authService.LoginUser(model))
+            {
+                this.TempData["Success"] = "Login success..";
+                return this.RedirectToAction("GetUsersTable", controllerName: "Table");
+            }
 
-        return this.View();
+            this.TempData["Error"] = "Incorrect email or password.";
+            return this.View();
+        });
     }
 
     [Route("Logout")]
@@ -50,6 +55,7 @@ public class AccountController : BaseController
     {
         await this.authService.LogOutUser();
 
+        this.TempData["Success"] = "User logged out.";
         return this.RedirectToAction("Login", controllerName: "Account");
     }
 
@@ -66,18 +72,20 @@ public class AccountController : BaseController
     {
         if (!this.ValidateModel(out IList<string> errors))
         {
-            return this.BadRequest(new { errors });
+            this.TempData["Errors"] = errors;
+            return this.View();
         }
 
         var result = await this.authService.RegisterUser(user, this.GetActionUrl("ConfirmEmail", "Account"));
 
-        this.ViewData["Errors"] = result.Errors;
+        this.TempData["Errors"] = result.Errors;
+        this.TempData["Success"] = "User registered successfully.";
 
         return result.Succeeded ? this.RedirectToAction("GetUsersTable", "Table") : this.View();
     }
 
-    [Route("ConfirmEmail")]
     [HttpGet]
+    [Route("ConfirmEmail")]
     public async Task<IActionResult> ConfirmEmail([FromQuery] string userId, string token)
     {
         var result = await this.authService.VerificationComplete(userId, token);

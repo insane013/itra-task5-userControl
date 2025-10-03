@@ -1,7 +1,9 @@
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Task5.Database.Entities;
 using Task5.Services.Emails;
@@ -43,7 +45,8 @@ public class EmailVerificationService : BaseService, IVerificationService
     {
         var token = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
 
-        var encodedToken = WebUtility.UrlEncode(token);
+        var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+        this._logger.LogInformation($"UserId: {user.Id}\n\tToken: {token}\n\tEncoded: {encodedToken}");
 
         return $"{confirmActionUrl}?userId={user.Id}&token={encodedToken}";
     }

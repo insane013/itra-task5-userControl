@@ -1,3 +1,6 @@
+@{
+    var errors = this.TempData["Errors"] as IEnumerable<string>;
+}
 <div class="row justify-content-center">
     <div class="col-md-6 col-lg-5">
         <div class="card shadow-sm rounded-4">
@@ -53,5 +56,12 @@
                 </div>
             </div>
         </div>
+
+        @if (errors != null)
+        {
+            foreach(var error in errors) {
+                @await Html.PartialAsync("_errorDisplay", error)
+            }
+        }
     </div>
 </div>

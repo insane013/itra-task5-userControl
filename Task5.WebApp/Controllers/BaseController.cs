@@ -50,7 +50,9 @@ public abstract class BaseController : Controller
         }
         catch (AccessDeniedException)
         {
+            CommonLogs.LogWarningMessage(this.Logger, "Unauthorized user access.");
             await this.signInManager.SignOutAsync();
+            this.TempData["Error"] = "Your account is currently blocked.";
             return this.Forbid();
         }
     }
