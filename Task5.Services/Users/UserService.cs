@@ -30,6 +30,8 @@ public class UserService : BaseService, IUserService
 
         var users = await this.repository.GetUsers();
 
+        users = users.OrderBy(x => x.Email);
+
         return PaginationHelper.Paginate(
             users,
             filter.PageNumber,
