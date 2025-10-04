@@ -10,6 +10,7 @@ using Task5.Database.Entities;
 using Task5.Models.User;
 using Task5.Services.Authentication;
 using Task5.Services.Logging;
+using Task5.WebApp.Helpers;
 
 namespace Task5.WebApp.Controllers;
 
