@@ -1,12 +1,15 @@
 @using Task5.Models.User
+@using System.Security.Claims
 @model PaginatedResult<User>
 
 @{
     List<User>? users = Model.Items.ToList();
+
+    var email = User.FindFirstValue(ClaimTypes.Email);
 }
 
 <form id="usersForm" method="post">
-    @await Html.PartialAsync("_ToolBar")
+    @await Html.PartialAsync("_ToolBar", email)
     <div class="table-responsive" style="padding-top: 80px;">
         <table class="table table-hover align-middle">
             <thead class="table-dark">
