@@ -77,6 +77,8 @@ public class AccountController : BaseController
             return this.View(user);
         }
 
+        if (string.IsNullOrWhiteSpace(user.UserPosition)) user.UserPosition = "N / A";
+
         var result = await this.authService.RegisterUser(user, this.GetActionUrl("ConfirmEmail", "Account"));
 
         this.TempData["Errors"] = result.Errors;

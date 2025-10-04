@@ -15,8 +15,8 @@ public class UserRegisterDto
     [MaxLength(32, ErrorMessage = "Max length for Name is 32 symbols")]
     public string UserName { get; init; } = string.Empty;
 
-    [MaxLength(64, ErrorMessage = "Max length for Name is 64 symbols")]
-    public string? UserPosition { get; init; } = "N / A";
+    [MaxLength(64, ErrorMessage = "Max length for user postion is 64 symbols")]
+    public string? UserPosition { get; set; } = "N / A";
 
     [Required]
     [MinLength(1)] // extract defaults
